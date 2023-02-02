@@ -1,0 +1,14 @@
+server:
+  port: 17758
+
+mysql:
+  host: 172.17.81.21
+  port: 3306
+  user: root
+  pass: Arcvideo@01
+  database: amam
+redis:
+  host: 172.17.81.21
+  port: 6379
+  pass: Arcvideo@01
+  db: 13
