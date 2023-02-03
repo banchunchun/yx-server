@@ -1,5 +1,5 @@
 server:
-  port: 17758
+  port: ":17758"
 
 mysql:
   host: 172.17.81.21
@@ -7,7 +7,9 @@ mysql:
   user: root
   pass: Arcvideo@01
   database: amam
+  param: charset=utf8mb4&parseTime=True&loc=Local
 redis:
+  network: tcp
   host: 172.17.81.21
   port: 6379
   pass: Arcvideo@01
