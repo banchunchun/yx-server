@@ -19,11 +19,11 @@ func LoadMySQL() *gorm.DB {
 
 func GetMysqlDSN() string {
 	return fmt.Sprintf("%s:%s@tcp(%s)/%s?%s",
-		global.Config.Mysql.User,
-		global.Config.Mysql.Pass,
-		global.Config.Mysql.Host,
-		global.Config.Mysql.Database,
-		global.Config.Mysql.Param,
+		global.CF.Mysql.User,
+		global.CF.Mysql.Pass,
+		global.CF.Mysql.Host,
+		global.CF.Mysql.Database,
+		global.CF.Mysql.Param,
 	)
 }
 func GormConfig() *gorm.Config {

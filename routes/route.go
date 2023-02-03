@@ -8,7 +8,7 @@ import (
 func Run() *gin.Engine {
 	engine := initGin()
 	loadRoute(engine)
-	engine.Run(global.Config.Server.Port)
+	engine.Run(global.CF.Server.Port)
 	return engine
 }
 

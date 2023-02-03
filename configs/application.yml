@@ -14,3 +14,11 @@ redis:
   port: 6379
   pass: Arcvideo@01
   db: 13
+
+log:
+  level: info
+  formatter: line
+  showLine: true
+  outFile: true
+  logInConsole: true
+  logDir: logs

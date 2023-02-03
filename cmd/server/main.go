@@ -6,7 +6,6 @@ import (
 	"go-api/global"
 	"go-api/initialize"
 	"go-api/server"
-	"log"
 )
 
 func init() {
@@ -17,15 +16,8 @@ func init() {
 *
  */
 func main() {
-	log.Println("begin start yx server")
-	//path := "./configs/"
-	//config := core.LoadConfig(path)
-	//load config
-	global.Config = core.LoadConfig()
-	log.Println("load configs files")
-	log.Println(global.Config)
-	log.Println(global.Config.Mysql.Host)
-	log.Println("load configs end")
+	global.CF = core.LoadConfig()
+	global.LOG = initialize.Zap("server") //初始化日志
 	global.MYSQL = initialize.LoadMySQL()
 	global.Redis = initialize.LoadRedis()
 	//主进程结束前关闭数据库链接
