@@ -13,7 +13,7 @@ var (
 	VP    *viper.Viper
 	Redis *redis.Client
 	CF    *core.Config
-	LOG   *zap.Logger
+	LOG   *zap.SugaredLogger
 )
 
 type Server interface {

@@ -22,3 +22,9 @@ log:
   outFile: true
   logInConsole: true
   logDir: logs
+
+transcoder:
+  workDir: /usr/local/arcvideo/yx/transcoder
+  xmlPath: /usr/local/arcvideo/yx/xml
+  imageExeWorkDir: /usr/local/arcvideo/yx/transcoder
+  imageExeName: imageBlend

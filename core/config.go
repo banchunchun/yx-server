@@ -12,10 +12,11 @@ type Server struct {
 }
 
 type Config struct {
-	Server Server `yaml:"server"`
-	Mysql  Mysql  `yaml:"mysql"`
-	Redis  Rds    `yaml:"redis"`
-	Log    Log    `yaml:"log"`
+	Server     Server `yaml:"server"`
+	Mysql      Mysql  `yaml:"mysql"`
+	Redis      Rds    `yaml:"redis"`
+	Log        Log    `yaml:"log"`
+	Transcoder TS     `yaml:"ts"`
 }
 type Log struct {
 	Level        string //等级
@@ -39,6 +40,13 @@ type Rds struct {
 	Port    string `yaml:"port"`
 	DB      int    `yaml:"db"`
 	Pass    string `yaml:"pass"`
+}
+
+type TS struct {
+	WorkDir         string `yaml:"workDir"`
+	XmlPath         string `yaml:"xmlPath"`
+	ImageExeWorkDir string `yaml:"imageExeWorkDir"`
+	ImageExeName    string `yaml:"imageExeName"`
 }
 
 // LoadConfig 加载配置文件
