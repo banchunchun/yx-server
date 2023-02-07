@@ -29,9 +29,9 @@ type VideoMaterialRequest struct {
 // VideoOutPutRequest 视频输出参数配置
 type VideoOutPutRequest struct {
 	// Width 视频宽度: eg. 1920
-	Width int `json:"width"`
+	Width string `json:"width"`
 	// Height 视频高度：eg. 1080
-	Height int `json:"height"`
+	Height string `json:"height"`
 	// Container 视频编码格式 eg: MP4
 	Container string `json:"container"`
 	// Codec 视频编码： eg. H264

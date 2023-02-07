@@ -26,9 +26,9 @@ type TransCoderTaskVO struct {
 	//StreamInput 输入的路径
 	StreamInput string
 	// Width 视频宽度: eg. 1920
-	Width int
+	Width string
 	// Height 视频高度：eg. 1080
-	Height int
+	Height string
 	// Container 视频编码格式 eg: MP4
 	Container string
 	// Codec 视频编码： eg. H264
