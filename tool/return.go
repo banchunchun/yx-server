@@ -5,7 +5,7 @@ import "github.com/gin-gonic/gin"
 type ResultData struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message"`
-	Data    interface{} `json:"data"`
+	Result  interface{} `json:"result"`
 }
 
 // WriteSuccessJson 输出成功的信息至Response
@@ -13,7 +13,7 @@ func WriteSuccessJson(context *gin.Context, code int, data interface{}) {
 	result := ResultData{
 		Code:    code,
 		Message: "操作成功",
-		Data:    data,
+		Result:  data,
 	}
 	context.JSONP(code, result)
 }
