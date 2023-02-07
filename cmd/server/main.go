@@ -18,7 +18,7 @@ func init() {
  */
 func main() {
 	global.CF = core.LoadConfig()
-	global.LOG = initialize.Zap("server") //初始化日志
+	global.LOG = initialize.ZapSugar("yxServer") //初始化日志
 	global.MYSQL = initialize.LoadMySQL()
 	global.Redis = initialize.LoadRedis()
 	fmt.Printf("TRANSCODER: %v\n", global.CF.Transcoder)

@@ -20,18 +20,18 @@ type VideoMaterialRequest struct {
 	// Transparency 透明度，默认20
 	Transparency int `json:"transparency"`
 	//StartPosition 开始时间戳，到毫秒
-	StartPosition int64 `json:"startPosition"`
+	StartPosition int `json:"startPosition"`
 	// 结束时间戳，到毫秒
-	EndPosition int64     `json:"endPosition"`
+	EndPosition int       `json:"endPosition"`
 	Regions     []*Region `json:"regions"`
 }
 
 // VideoOutPutRequest 视频输出参数配置
 type VideoOutPutRequest struct {
 	// Width 视频宽度: eg. 1920
-	Width string `json:"width"`
+	Width int `json:"width"`
 	// Height 视频高度：eg. 1080
-	Height string `json:"height"`
+	Height int `json:"height"`
 	// Container 视频编码格式 eg: MP4
 	Container string `json:"container"`
 	// Codec 视频编码： eg. H264

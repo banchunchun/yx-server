@@ -1,8 +1,10 @@
 package tool
 
 import (
+	"fmt"
 	"go-api/global"
 	"os"
+	"regexp"
 	"text/template"
 )
 
@@ -48,4 +50,12 @@ func ParseObject(fileName string, outFileName string, data interface{}) error {
 	}
 	err = t.Execute(f, data)
 	return err
+}
+
+func TestReg() {
+	ss := " [\n \\ [ 60% ] finished, speed [ 6.74 ], duration [ 202772(ms) ]\n | [ 61% ] finished, speed [ 6.76 ], duration [ 202772(ms) ]]"
+	reg := regexp.MustCompile("\\d+\\(?=%\\)")
+	var ssss []string
+	ssss = reg.FindAllString(ss, -1)
+	fmt.Println(ssss)
 }

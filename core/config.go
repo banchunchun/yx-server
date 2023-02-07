@@ -74,7 +74,7 @@ func LoadConfig(path ...string) *Config {
 	}
 	var c *Config
 	if err := viper.Unmarshal(&c); err != err {
-		fmt.Println("load config value error %s \n", zap.Error(err))
+		fmt.Printf("load config value error %s \n\n", zap.Error(err))
 	}
 	return c
 }

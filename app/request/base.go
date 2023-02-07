@@ -11,11 +11,11 @@ type Base struct {
 	//Command 操作命令，默认 COMPLETE
 	Command string `json:"command"`
 	// TaskId 任务id，需要业务层生成后续用来查询任务是否执行完毕
-	TaskId int64 `json:"taskId"`
+	TaskId int `json:"taskId"`
 	// CallBackUrl  回调的url，如果不填则需要业务层主动轮询查
 	CallBackUrl string `json:"callbackUrl"`
 	//TaskStatus   任务状态
 	TaskStatus string `json:"taskStatus"`
 	// Process 任务进度 0-100
-	Process int64 `json:"process"`
+	Process int `json:"process"`
 }

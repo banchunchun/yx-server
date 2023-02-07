@@ -8,11 +8,21 @@ type ResultData struct {
 	Data    interface{} `json:"data"`
 }
 
-func WriteJson(context *gin.Context, code int, message string, data interface{}) {
+// WriteSuccessJson 输出成功的信息至Response
+func WriteSuccessJson(context *gin.Context, code int, data interface{}) {
 	result := ResultData{
 		Code:    code,
-		Message: message,
+		Message: "操作成功",
 		Data:    data,
+	}
+	context.JSONP(code, result)
+}
+
+// WriteErrorJson 输出失败的信息至Response
+func WriteErrorJson(context *gin.Context, code int) {
+	result := ResultData{
+		Code:    code,
+		Message: "操作失败",
 	}
 	context.JSONP(code, result)
 }

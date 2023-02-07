@@ -14,7 +14,7 @@ func testRoute(r *gin.Engine) {
 	test := r.Group("/api/test")
 	{
 		test.GET("/home", func(context *gin.Context) {
-			tool.WriteJson(context, 200, "操作成功", "first")
+			tool.WriteSuccessJson(context, 200, "first")
 		})
 	}
 }

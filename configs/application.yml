@@ -25,6 +25,7 @@ log:
 
 transcoder:
   workDir: /usr/local/arcvideo/yx/transcoder
-  xmlPath: /usr/local/arcvideo/yx/xml
+  xmlPath: /usr/local/arcvideo/yx/custom
+#  xmlPath: d:\\yx\\custom
   imageExeWorkDir: /usr/local/arcvideo/yx/transcoder
   imageExeName: imageBlend

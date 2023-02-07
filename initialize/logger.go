@@ -16,7 +16,7 @@ import (
 var level zapcore.Level
 
 func ZapSugar(logName string) *zap.SugaredLogger {
-	return Zap(logName).Sugar().Named("Cron")
+	return Zap(logName).Sugar().Named(logName)
 }
 
 func Zap(logName string) (logger *zap.Logger) {
