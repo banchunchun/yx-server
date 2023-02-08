@@ -24,19 +24,19 @@ func TestParse(t *testing.T) {
 	var regions []R
 	regions = append(regions, rr)
 	mat.Regions = regions
-	mr := MR{
-		mat,
-	}
-	var matList []MR
-	matList = append(matList, mr)
+	//mr := MR{
+	//	mat,
+	//}
+	//var matList []MR
+	//matList = append(matList, mr)
 
 	ff := Feature{
-		MaterialList: matList,
+		//MaterialList: matList,
+		Type: "blendImages",
 	}
 
 	features := Features{
 		Feature: ff,
-		Type:    "blendImages",
 	}
 
 	con := contentdetect{

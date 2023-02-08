@@ -17,11 +17,11 @@ type contentdetect struct {
 
 type Features struct {
 	Feature Feature `xml:"feature"`
-	Type    string  `xml:"type,attr"`
 }
 
 type Feature struct {
-	MaterialList MR `xml:"materialList"`
+	MaterialList MR     `xml:"materialList"`
+	Type         string `xml:"type,attr"`
 }
 
 type MR struct {
@@ -94,11 +94,11 @@ func BuildXml(videoRequest request.VideoRequest) (string, error) {
 	}
 	ff := Feature{
 		MaterialList: mr,
+		Type:         "blendImages",
 	}
 
 	features := Features{
 		Feature: ff,
-		Type:    "blendImages",
 	}
 
 	con := contentdetect{

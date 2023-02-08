@@ -118,12 +118,11 @@ func doStdoutBusinessForPlay(line string, key int) {
 		// HANG ，需要执行强杀并发送失败信息
 		updateTranscoderStatus(key, "0", constants.STATUS_ERROR)
 	} else if strings.Contains(line, constants.TRAMSCPDER_PROCESS) {
-		var vals []string
-		vals = reg.FindAllString(line, -1)
-		if len(vals) == 0 {
+		values := reg.FindAllString(line, -1)
+		if len(values) == 0 {
 
 		} else {
-			for _, val := range vals {
+			for _, val := range values {
 				value := strings.Replace(val, "%", "", 1)
 				updateTranscoderStatus(key, value, constants.STATUS_RUNNING)
 			}
@@ -148,7 +147,7 @@ func updateTranscoderStatus(taskId int, process string, status string) {
 	//notify callback url
 	callbackUrl := vr.CallBackUrl
 	if callbackUrl != "" {
-		go callback.CallBack(callbackUrl, status, process, taskId)
+		callback.CallBack(callbackUrl, status, process, taskId)
 	}
 
 }
