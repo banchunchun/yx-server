@@ -93,7 +93,7 @@ func addListenerStdout(stdout io.ReadCloser, key int, vo *TransCoderTaskVO) {
 	for {
 		tempLine, _, err := reader.ReadLine()
 		if err != nil || io.EOF == err {
-			global.LOG.Errorf("[addListenerStdout] error break %v", zap.Error(err))
+			global.LOG.Infof("[addListenerStdout] exits file listener %v", zap.Error(err))
 			break
 		}
 		line := string(tempLine)
