@@ -105,7 +105,7 @@ func Image(context *gin.Context) {
 
 // Audio 音频合成
 func Audio(context *gin.Context) {
-
+	tool.WriteErrorJson(context, -1)
 }
 
 // Result 根据任务id和taskType获取结果

@@ -26,6 +26,7 @@ func WriteErrorJson(context *gin.Context, code int) {
 		Code:    code,
 		Message: "操作失败",
 		Success: code == 0,
+		Result:  nil,
 	}
 	context.JSONP(code, result)
 }
