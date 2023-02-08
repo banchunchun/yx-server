@@ -19,5 +19,8 @@ func Get(client *redis.Client, key string, any interface{}) {
 	if err != nil {
 		return
 	}
-	json.Unmarshal([]byte(sc), &any)
+	err = json.Unmarshal([]byte(sc), &any)
+	if err != nil {
+		return
+	}
 }

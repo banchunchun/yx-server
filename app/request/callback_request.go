@@ -2,7 +2,7 @@ package request
 
 // YxCallBackRequest yx callback request
 type YxCallBackRequest struct {
-	TaskId int    `json:"taskId"`
-	Url    string `json:"url"`
-	Status string `json:"status"`
+	TaskId  int    `json:"taskId"`
+	Status  string `json:"status"`
+	Process string `json:"process"`
 }

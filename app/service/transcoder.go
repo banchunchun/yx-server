@@ -3,6 +3,7 @@ package service
 import (
 	"bufio"
 	"fmt"
+	"go-api/app/callback"
 	"go-api/app/request"
 	"go-api/constants"
 	"go-api/global"
@@ -145,4 +146,9 @@ func updateTranscoderStatus(taskId int, process string, status string) {
 	vr.TaskStatus = status
 	tool.Set(global.Redis, redisTaskKey, vr)
 	//notify callback url
+	callbackUrl := vr.CallBackUrl
+	if callbackUrl != "" {
+		go callback.CallBack(callbackUrl, status, process, taskId)
+	}
+
 }
