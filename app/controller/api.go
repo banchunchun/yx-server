@@ -11,6 +11,8 @@ import (
 	"go-api/global"
 	"go-api/tool"
 	"go.uber.org/zap"
+	"os"
+	"path/filepath"
 	"strconv"
 )
 
@@ -30,7 +32,7 @@ func Video(context *gin.Context) {
 
 	global.LOG.Infof("video request data=%v\n", videoRequest)
 	// 生成 transcoder helper
-	//transcoderHelper := service.NewTranscoderService()
+	transcoderHelper := service.NewTranscoderService()
 
 	transCoderTaskVO := service.TransCoderTaskVO{
 		TaskId: videoRequest.TaskId,
@@ -45,32 +47,32 @@ func Video(context *gin.Context) {
 	}
 	xmlPath, err := custom.BuildXml(videoRequest)
 	fmt.Println(xmlPath)
-	//if err != nil {
-	//	tool.WriteErrorJson(context, -1)
-	//	return
-	//}
-	//global.LOG.Infof("[VIDEO] build xmlPath=%v", xmlPath)
-	//transCoderTaskVO.FeatureXmlInput = xmlPath
-	////生成transcoder.xml
-	//templateFileName := filepath.Join("../templates/", "transcoder.tpl")
-	//err = os.MkdirAll(global.CF.Transcoder.XmlPath+"/tpl/", 0644)
-	//if err != nil {
-	//	global.LOG.Errorf("[VIDEO] create transcoder xml folder error %v", zap.Error(err))
-	//	tool.WriteErrorJson(context, -1)
-	//	return
-	//}
-	//transcoderXml := global.CF.Transcoder.XmlPath + "/tpl/" + strconv.Itoa(videoRequest.TaskId) + ".xml"
-	//global.LOG.Infof("[VIDEO] transcoderXml=%v", transcoderXml)
-	//err = tool.ParseObject(templateFileName, transcoderXml, &transCoderTaskVO)
-	//if err != nil {
-	//	global.LOG.Errorf("[VIDEO] make transcoder.xml error %v", zap.Error(err))
-	//	tool.WriteErrorJson(context, -1)
-	//	return
-	//}
-	////启动协程进行运行
-	//go transcoderHelper.StartTranscoder(&transCoderTaskVO, transcoderXml)
+	if err != nil {
+		tool.WriteErrorJson(context, -1)
+		return
+	}
+	global.LOG.Infof("[VIDEO] build xmlPath=%v", xmlPath)
+	transCoderTaskVO.FeatureXmlInput = xmlPath
+	//生成transcoder.xml
+	templateFileName := filepath.Join("../templates/", "transcoder.tpl")
+	err = os.MkdirAll(global.CF.Transcoder.XmlPath+"/tpl/", 0644)
+	if err != nil {
+		global.LOG.Errorf("[VIDEO] create transcoder xml folder error %v", zap.Error(err))
+		tool.WriteErrorJson(context, -1)
+		return
+	}
+	transcoderXml := global.CF.Transcoder.XmlPath + "/tpl/" + strconv.Itoa(videoRequest.TaskId) + ".xml"
+	global.LOG.Infof("[VIDEO] transcoderXml=%v", transcoderXml)
+	err = tool.ParseObject(templateFileName, transcoderXml, &transCoderTaskVO)
+	if err != nil {
+		global.LOG.Errorf("[VIDEO] make transcoder.xml error %v", zap.Error(err))
+		tool.WriteErrorJson(context, -1)
+		return
+	}
+	//启动协程进行运行
+	go transcoderHelper.StartTranscoder(&transCoderTaskVO, transcoderXml)
 	//返回任务id
-	tool.WriteSuccessJson(context, 200, videoRequest.TaskId)
+	tool.WriteSuccessJson(context, 0, videoRequest.TaskId)
 }
 
 // Image  图片合成
@@ -99,7 +101,7 @@ func Image(context *gin.Context) {
 	imageHelper := service.NewImageService()
 	go imageHelper.BuildImage(imageRequest, jsonPath)
 	//返回任务id
-	tool.WriteSuccessJson(context, 200, imageRequest.TaskId)
+	tool.WriteSuccessJson(context, 0, imageRequest.TaskId)
 }
 
 // Audio 音频合成
