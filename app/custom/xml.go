@@ -21,11 +21,11 @@ type Features struct {
 }
 
 type Feature struct {
-	MaterialList []MR `xml:"materialList"`
+	MaterialList MR `xml:"materialList"`
 }
 
 type MR struct {
-	Material Material `xml:"material"`
+	Material []Material `xml:"material"`
 }
 
 type Material struct {
@@ -61,7 +61,7 @@ func BuildXml(videoRequest request.VideoRequest) (string, error) {
 		global.LOG.Errorf("BuildXml chdir  error %v %v", targetXmlPath, err)
 		return "", err
 	}
-	var matList []MR
+	var matList []Material
 	for _, mr := range videoRequest.MaterialList {
 		var regions []R
 
@@ -77,7 +77,7 @@ func BuildXml(videoRequest request.VideoRequest) (string, error) {
 			}
 			regions = append(regions, rr)
 		}
-		regions = append(regions)
+		//regions = append(regions)
 		mat := Material{
 			Path:            mr.Path,
 			AppearDuration:  strconv.Itoa(mr.AppearDuration),
@@ -87,12 +87,13 @@ func BuildXml(videoRequest request.VideoRequest) (string, error) {
 			Transparency:    strconv.Itoa(mr.Transparency),
 			Regions:         regions,
 		}
-		mr := MR{mat}
-		matList = append(matList, mr)
+		matList = append(matList, mat)
 	}
-
+	mr := MR{
+		Material: matList,
+	}
 	ff := Feature{
-		MaterialList: matList,
+		MaterialList: mr,
 	}
 
 	features := Features{
