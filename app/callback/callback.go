@@ -18,7 +18,7 @@ func CallBack(callbackUrl string, status string, process string, taskId int) {
 		Process: process,
 	}
 	postJson, _ := json.Marshal(backRequest)
-	global.LOG.Infof("[callback] url=%v,postJson=%v\n", callbackUrl, postJson)
+	global.LOG.Infof("[callback] url=%v,postJson=%v\n", callbackUrl, string(postJson))
 	post, err := http.Post(callbackUrl, "application/json", bytes.NewBuffer(postJson))
 	if err != nil {
 		global.LOG.Errorf("[callback] post url: %v error:%v\n", callbackUrl, zap.Error(err))
