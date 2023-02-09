@@ -9,6 +9,7 @@ func Run() *gin.Engine {
 	engine := initGin()
 	loadRoute(engine)
 	engine.Run(global.CF.Server.Port)
+	global.LOG.Infof("yxServer run port:%v\n", global.CF.Server.Port)
 	return engine
 }
 

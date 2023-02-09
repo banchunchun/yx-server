@@ -97,7 +97,9 @@ func addListenerStdout(stdout io.ReadCloser, key int, vo *TransCoderTaskVO) {
 			break
 		}
 		line := string(tempLine)
-		global.LOG.Infoln("[addListenerStdout] 输出 [" + line + "]")
+		if line != "" {
+			global.LOG.Infoln("[addListenerStdout] 输出 [" + line + "]")
+		}
 		go doStdoutBusinessForPlay(line, key)
 	}
 }
